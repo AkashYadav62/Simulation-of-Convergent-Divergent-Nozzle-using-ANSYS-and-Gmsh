@@ -1,0 +1,30 @@
+import math
+import matplotlib.pyplot as plt
+Ts=120
+Ti=20
+L=10
+D=0.05
+R=0.025
+A=(3.14*R*R)/2
+P=2*3.14*R
+rho=1000
+mdot=rho*A*10
+Cp= 4.2*1000
+h=100
+def Tm(x):
+    As = P*x
+    dT = Ts - Ti
+    a = h*As
+    b = mdot*Cp
+    exp = math.exp(-(a/b))
+    Tvalue =Ts - (dT*exp)
+    return Tvalue
+t=[]
+x=[]
+for i in range(0,L+1,1):
+    x.append(i)
+    t.append(Tm(i))
+plt.plot(x,t)
+plt.xlabel("Length")
+plt.ylabel("Mean Temperature")
+plt.show()
